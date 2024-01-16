@@ -1,8 +1,8 @@
+atom3d
+numpy
+sklearn
 torch
+torch_cluster
 torch_geometric
 torch_scatter
-torch_cluster
 tqdm
-numpy
-scikit-learn
-atom3d
