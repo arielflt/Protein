@@ -26,12 +26,12 @@ def load_and_process_data(prefix):
     self_links = torch.arange(0, len(node_features))
     edge_index = torch.cat([edge_index, torch.stack([self_links, self_links])], dim=1)
     edge_index = torch.cat([edge_index, edge_index[[1, 0], :]], dim=1)  # Add reverse direction
-
+    edge_attr = torch.tensor(link_features.values, dtype=torch.float)
     node_features_tensor = torch.tensor(node_features.values, dtype=torch.float)
     labels_tensor = torch.tensor(labels, dtype=torch.float)
 
     # Create graph data object
-    data = Data(x=node_features_tensor, edge_index=edge_index, y=labels_tensor)
+    data = Data(x=node_features_tensor, edge_index=edge_index, edge_attr=edge_attr, 		y=labels_tensor)
 
     return data
 
@@ -47,7 +47,7 @@ for index, row in candidate_pairs.iterrows():
 
 
 
-save_dir = 'saved_graphs'
+save_dir = 'saved_graphs2'
 os.makedirs(save_dir, exist_ok=True)
 
 
